@@ -22,10 +22,11 @@ export class TecnicoReadComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.findAll();
   }
 
   findAll():void{
-    this.service.findAll().subscribe((resposta) => {
+    this.service.findAll().subscribe((resposta): void => {
       this.tecnicos = resposta;
       console.log(this.tecnicos)
     }) 
