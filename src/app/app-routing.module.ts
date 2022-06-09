@@ -14,7 +14,11 @@ const routes: Routes = [
     component: TecnicoReadComponent
   },
   {
+<<<<<<< HEAD
     path: 'tecnicos/create',
+=======
+    path: 'tecnico/create',
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767
     component: TecnicoCreateComponent
   }
 

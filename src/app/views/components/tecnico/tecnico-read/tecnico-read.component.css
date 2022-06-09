@@ -4,7 +4,16 @@
     margin-left: auto;
 }
 
+<<<<<<< HEAD
 .create {
+=======
+.create h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.create button {
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767
     width: 100%;
     margin: 1rem auto;
 }

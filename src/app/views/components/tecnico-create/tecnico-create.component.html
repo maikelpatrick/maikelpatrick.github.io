@@ -1,1 +1,26 @@
+<<<<<<< HEAD
 <p>tecnico-create works!</p>
+=======
+<form class="form">
+    <h1>Criando novo Técnico</h1>
+    <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
+        <input [(ngModel)]="tecnico.nome" [formControl]="nome" required name="nome" matInput placeholder="Ex. Maikel">
+        <mat-error *ngIf="nome.invalid">{{ errorValidNome() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>CPF</mat-label>
+        <input [(ngModel)]="tecnico.cpf" [formControl]="cpf" required name="cpf" maxlength="15" matInput placeholder="Ex. ###.###.###-##">
+        <mat-error *ngIf="cpf.invalid">{{ errorValidCPF() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Telefone</mat-label>
+        <input [(ngModel)]="tecnico.telefone" [formControl]="telefone" required name="telefone" maxlength="18" matInput placeholder="Ex. XX XXXXX-XXXX">
+        <mat-error *ngIf="telefone.invalid">{{ errorValidTelefone() }}</mat-error>
+    </mat-form-field>
+    <button (click)="create()" [disabled]="errorValidNome() || errorValidCPF() || errorValidTelefone()" mat-stroked-button color="accent">Criar</button>
+    <button (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+</form>
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767

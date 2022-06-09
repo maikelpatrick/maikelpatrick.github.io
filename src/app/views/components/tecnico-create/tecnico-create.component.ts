@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Tecnico } from 'src/app/models/tecnico';
+import { TecnicoService } from 'src/app/services/tecnico.service';
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767
 
 @Component({
   selector: 'app-tecnico-create',
@@ -7,9 +14,67 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TecnicoCreateComponent implements OnInit {
 
+<<<<<<< HEAD
   constructor() { }
+=======
+  tecnico : Tecnico = {
+    id: '',
+    nome: '',
+    cpf: '',
+    telefone:''
+  }
+
+  nome = new FormControl('', [Validators.minLength(5)])
+  cpf = new FormControl('', [Validators.minLength(11)])
+  telefone = new FormControl('', [Validators.minLength(11)])
+
+  constructor(private router : Router,
+    private service: TecnicoService) { }
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767
 
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
+=======
+  cancelar():void{
+    this.router.navigate(['tecnicos']);
+  }
+
+  create():void{
+    this.service.create(this.tecnico).subscribe((resposta) => {
+      this.router.navigate(['tecnicos'])
+      this.service.messagem('Técnico criado com sucesso!!!')
+    }, err => {
+      if(err.error.error.match('já cadastrado')){
+        this.service.messagem(err.error.error);
+      } else if(err.error.errors[0].message === "número do registro de contribuinte individual brasileiro (CPF) inválido"){
+        this.service.messagem("CPF INVÁLIDO!");
+      }       
+    })
+  }
+
+
+  errorValidNome(){
+    if(this.nome.invalid){
+      return 'O campo Nome deve ter mais que 5 caracteres!'
+    }
+    return false;
+  }
+
+  errorValidCPF(){
+    if(this.nome.invalid){
+      return 'O campo CPF deve ter mais que 11 e 15 caracteres!'
+    }
+    return false;
+  }
+
+  errorValidTelefone(){
+    if(this.nome.invalid){
+      return 'O campo Telefone deve ter mais que 11 e 18 caracteres!'
+    }
+    return false;
+  }
+
+>>>>>>> 974e61a9538a2f9b449480b1c97595686a019767
 }
