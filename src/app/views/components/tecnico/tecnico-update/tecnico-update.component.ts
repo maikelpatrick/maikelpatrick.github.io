@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tecnico } from 'src/app/models/tecnico';
 import { TecnicoService } from 'src/app/services/tecnico.service';
 
 @Component({
-  selector: 'app-tecnico-create',
-  templateUrl: './tecnico-create.component.html',
-  styleUrls: ['./tecnico-create.component.css']
+  selector: 'app-tecnico-update',
+  templateUrl: './tecnico-update.component.html',
+  styleUrls: ['./tecnico-update.component.css']
 })
-export class TecnicoCreateComponent implements OnInit {
+
+export class TecnicoUpdateComponent implements OnInit {
+
+  id_tec = ''
 
   tecnico : Tecnico = {
     id: '',
@@ -22,28 +25,33 @@ export class TecnicoCreateComponent implements OnInit {
   cpf = new FormControl('', [Validators.minLength(11)])
   telefone = new FormControl('', [Validators.minLength(11)])
 
-  constructor(private router : Router,
-    private service: TecnicoService) { }
+  constructor(
+    private router : Router,
+      private service: TecnicoService,
+      private route: ActivatedRoute ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.id_tec = this.route.snapshot.paramMap.get('id')!
+    this.findByID();
+  }
+
+  update():void{
+    this.service.update(this.tecnico).subscribe((resposta) => {
+      this.router.navigate(['tecnicos'])
+      this.service.messagem('Técnico atualizado com sucesso!!!')
+    })
+  }
+
+  findByID(): void{
+    this.service.findById(this.id_tec).subscribe(resposta => {
+    this.tecnico =resposta;
+    })
   }
 
   cancelar():void{
     this.router.navigate(['tecnicos']);
   }
 
-  create():void{
-    this.service.create(this.tecnico).subscribe((resposta) => {
-      this.router.navigate(['tecnicos'])
-      this.service.messagem('Técnico criado com sucesso!!!')
-    }, err => {
-      if(err.error.error.match('já cadastrado')){
-        this.service.messagem(err.error.error);
-      } else if(err.error.errors[0].message === "número do registro de contribuinte individual brasileiro (CPF) inválido"){
-        this.service.messagem("CPF INVÁLIDO!");
-      }       
-    })
-  }
 
 
   errorValidNome(){
