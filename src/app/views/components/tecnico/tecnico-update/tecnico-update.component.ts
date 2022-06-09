@@ -32,7 +32,7 @@ export class TecnicoUpdateComponent implements OnInit {
 
   ngOnInit(): void {    
     this.id_tec = this.route.snapshot.paramMap.get('id')!
-    this.findByID();
+    this.findById();
   }
 
   update():void{
@@ -42,9 +42,9 @@ export class TecnicoUpdateComponent implements OnInit {
     })
   }
 
-  findByID(): void{
+  findById(): void{
     this.service.findById(this.id_tec).subscribe(resposta => {
-    this.tecnico =resposta;
+    this.tecnico = resposta;
     })
   }
 
