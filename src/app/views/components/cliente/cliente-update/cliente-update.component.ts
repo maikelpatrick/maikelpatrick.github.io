@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tecnico } from 'src/app/models/tecnico';
-import { TecnicoService } from 'src/app/services/tecnico.service';
+import { Cliente } from 'src/app/models/cliente';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
-  selector: 'app-tecnico-update',
-  templateUrl: './tecnico-update.component.html',
-  styleUrls: ['./tecnico-update.component.css']
+  selector: 'app-cliente-update',
+  templateUrl: './cliente-update.component.html',
+  styleUrls: ['./cliente-update.component.css']
 })
-
-export class TecnicoUpdateComponent implements OnInit {
+export class ClienteUpdateComponent implements OnInit {
 
   id_tec = '';
 
-  tecnico : Tecnico = {
+  cliente : Cliente = {
     id: '',
     nome: '',
     cpf: '',
@@ -27,7 +26,7 @@ export class TecnicoUpdateComponent implements OnInit {
 
   constructor(
     private router : Router,
-      private service: TecnicoService,
+      private service: ClienteService,
       private route: ActivatedRoute ) { }
 
   ngOnInit(): void {    
@@ -36,20 +35,20 @@ export class TecnicoUpdateComponent implements OnInit {
   }
 
   update():void{
-    this.service.update(this.tecnico).subscribe((resposta) => {
-      this.router.navigate(['tecnicos'])
-      this.service.messagem('Técnico atualizado com sucesso!!!')
+    this.service.update(this.cliente).subscribe((resposta) => {
+      this.router.navigate(['clientes'])
+      this.service.messagem('Cliente atualizado com sucesso!!!')
     })
   }
 
   findById(): void{
     this.service.findById(this.id_tec).subscribe(resposta => {
-    this.tecnico = resposta;
+    this.cliente = resposta;
     })
   }
 
   cancelar():void{
-    this.router.navigate(['tecnicos']);
+    this.router.navigate(['clientes']);
   }
 
   errorValidNome(){
