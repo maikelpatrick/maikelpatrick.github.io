@@ -6,6 +6,7 @@ import { ClienteReadComponent } from './views/components/cliente/cliente-read/cl
 import { ClienteUpdateComponent } from './views/components/cliente/cliente-update/cliente-update.component';
 import { HomeComponent } from './views/components/home/home.component';
 import { OsReadComponent } from './views/components/os/os-read/os-read.component';
+import { OsViewComponent } from './views/components/os/os-view/os-view.component';
 import { TecnicoCreateComponent } from './views/components/tecnico-create/tecnico-create.component';
 import { TecnicoDeleteComponent } from './views/components/tecnico/tecnico-delete/tecnico-delete.component';
 import { TecnicoReadComponent } from './views/components/tecnico/tecnico-read/tecnico-read.component';
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'os',
     component: OsReadComponent
+  },
+  {
+    path: 'os/view/:id',
+    component: OsViewComponent
   }
 
 ];
